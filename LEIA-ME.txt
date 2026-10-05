@@ -1,0 +1,131 @@
+===============================================================
+  LOJA AMY SAM DOCERIA - SISTEMA LOCAL (voce tem o dominio total)
+===============================================================
+
+O que e este sistema
+--------------------
+E a sua loja de bolos rodando 100% na SUA maquina, como um servidor
+local. Voce e o dono dos dados: nada e enviado para a internet. Os
+produtos, precos, fotos e o login do administrador ficam guardados no
+arquivo "loja.db", na mesma pasta deste sistema.
+
+- Nao precisa instalar nada alem do Python (nao usa "pip install").
+- O login do administrador e validado no servidor (senha protegida
+  com PBKDF2-SHA256 + sal), bem mais seguro do que a versao anterior.
+- Pode ser acessado por outros aparelhos na MESMA rede Wi-Fi
+  (celular, tablet, outro computador).
+
+
+---------------------------------------------------------------
+PASSO 1 - Instalar o Python (so na primeira vez)
+---------------------------------------------------------------
+Windows:
+  1. Acesse  https://www.python.org/downloads/
+  2. Baixe o Python 3 e execute o instalador.
+  3. IMPORTANTE: na primeira tela, marque a caixa
+     "Add Python to PATH" antes de clicar em "Install Now".
+
+Mac:
+  - Ja costuma vir com Python 3. Para conferir, abra o "Terminal"
+    e digite:  python3 --version
+  - Se nao tiver, baixe em  https://www.python.org/downloads/
+
+Linux:
+  - Quase sempre ja vem instalado. Confira com:  python3 --version
+  - Se faltar:  sudo apt install python3   (ou o gerenciador da sua distro)
+
+
+---------------------------------------------------------------
+PASSO 2 - Iniciar a loja
+---------------------------------------------------------------
+Windows:
+  - De um duplo clique no arquivo  "iniciar_windows.bat"
+  - Se o Windows perguntar sobre a rede, clique em "Permitir acesso".
+
+Mac:
+  - De um duplo clique em  "iniciar_mac_linux.command"
+  - Se aparecer aviso de seguranca, clique com o botao direito no
+    arquivo > Abrir > Abrir. (so na primeira vez)
+  - Se nao abrir por permissao, no Terminal rode uma vez:
+      chmod +x iniciar_mac_linux.command
+
+Linux:
+  - No terminal, dentro desta pasta, rode:
+      chmod +x iniciar_mac_linux.command   (so na primeira vez)
+      ./iniciar_mac_linux.command
+  - Ou simplesmente:  python3 server.py
+
+Uma janela preta (terminal) vai abrir mostrando os enderecos.
+DEIXE ESSA JANELA ABERTA enquanto usar a loja.
+
+
+---------------------------------------------------------------
+PASSO 3 - Abrir no navegador
+---------------------------------------------------------------
+Nesta mesma maquina, abra o navegador em:
+      http://localhost:8000
+
+Em outro aparelho na mesma rede Wi-Fi, use o endereco "Na rede local"
+que aparece na janela preta, algo como:
+      http://192.168.0.10:8000
+
+
+---------------------------------------------------------------
+PASSO 4 - Criar o acesso de administrador (primeira vez)
+---------------------------------------------------------------
+1. Clique no botao  "Gerenciar"  (engrenagem).
+2. Na primeira vez, o sistema pede para CRIAR um usuario e uma senha.
+3. Depois disso, para editar a loja voce sempre entra com esse
+   usuario e senha.
+
+O que da para fazer no painel "Gerenciar":
+  - Adicionar / editar / excluir produtos (nome, preco, foto, categoria)
+  - Definir os sabores de cada produto (separados por virgula)
+  - Trocar o nome da loja, o WhatsApp e o Instagram
+  - Trocar o usuario e a senha do administrador (secao Seguranca)
+  - Sair do modo administrador
+
+Os clientes NAO precisam de senha: eles so navegam, escolhem os
+sabores, montam o carrinho e enviam o pedido pelo WhatsApp.
+
+
+---------------------------------------------------------------
+OPCOES UTEIS
+---------------------------------------------------------------
+- Trocar a porta (se a 8000 estiver ocupada):
+      python server.py 8080
+  (depois acesse  http://localhost:8080 )
+
+- Deixar acessivel SO nesta maquina (sem rede):
+      python server.py 8000 127.0.0.1
+
+- Parar o servidor:
+      clique na janela preta e pressione  Ctrl + C
+
+
+---------------------------------------------------------------
+BACKUP e RESET
+---------------------------------------------------------------
+- BACKUP: copie o arquivo "loja.db" para um lugar seguro. Ele contem
+  TODOS os seus produtos, configuracoes e o login. Para restaurar,
+  basta colocar esse arquivo de volta na pasta.
+
+- ESQUECEU A SENHA / QUER ZERAR O ACESSO: feche o servidor e apague
+  o arquivo "loja.db". Ao iniciar de novo, a loja volta ao cardapio
+  padrao e pede para criar um novo usuario/senha.
+  (Atencao: isso apaga tambem os produtos que voce tiver cadastrado -
+  por isso faca backup antes.)
+
+
+---------------------------------------------------------------
+SEGURANCA - leia com atencao
+---------------------------------------------------------------
+- A conexao e HTTP (sem cadeado/HTTPS). Na sua rede local (casa/loja)
+  isso e normal. NAO exponha este sistema direto na internet sem uma
+  camada de HTTPS (ex.: um proxy reverso como Caddy/Nginx) ou uma VPN,
+  pois a senha trafegaria sem criptografia.
+- Ao acessar de outros aparelhos, o Windows pode pedir para
+  "Permitir acesso" no firewall - autorize para a rede privada.
+- Mantenha o arquivo "loja.db" protegido, pois ele guarda o login.
+
+Bom uso e boas vendas! :)

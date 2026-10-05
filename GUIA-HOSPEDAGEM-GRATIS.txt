@@ -1,0 +1,102 @@
+===============================================================
+  COMO COLOCAR A LOJA NA INTERNET COM HOSPEDAGEM GRATUITA
+===============================================================
+
+Antes de tudo, e importante entender uma coisa:
+
+A sua loja hoje tem DUAS partes:
+  (1) a pagina (loja.html) - o que o cliente ve;
+  (2) o servidor (server.py + loja.db) - guarda os produtos e faz o
+      login do administrador.
+
+Existem dois caminhos para por isso online de graca. Escolha o que
+faz mais sentido para voce.
+
+
+===============================================================
+  CAMINHO 1 - SITE ESTATICO (mais facil e 100% gratis para sempre)
+===============================================================
+Indicado se voce quer o site no ar rapido, so para MOSTRAR o catalogo
+e RECEBER pedidos pelo WhatsApp.
+
+Como funciona:
+  - Sobe so a pagina (um arquivo HTML). Nao usa servidor.
+  - Os produtos ficam salvos no navegador de quem edita.
+  - IMPORTANTE (limitacao): os produtos que voce cadastrar no SEU
+    navegador nao aparecem automaticamente para os clientes. Para o
+    catalogo ficar igual para todo mundo, os produtos precisam vir
+    "embutidos" na pagina. Me peca essa versao que eu preparo o HTML
+    ja com todos os produtos/fotos dentro - ai e so subir.
+
+Onde hospedar de graca (escolha um):
+
+  A) Netlify Drop (o mais simples - arrasta e solta)
+     1. Acesse:  https://app.netlify.com/drop
+     2. Arraste o arquivo da loja (index.html) para a pagina.
+     3. Pronto! Ele gera um endereco tipo
+        https://sua-loja.netlify.app
+     Obs.: renomeie o arquivo para "index.html" antes de subir.
+
+  B) GitHub Pages (gratis, precisa de conta no GitHub)
+     1. Crie uma conta em  https://github.com
+     2. Crie um repositorio novo (ex.: "loja").
+     3. Envie o arquivo index.html para o repositorio.
+     4. Em Settings > Pages, selecione a branch "main" e salve.
+     5. Em alguns minutos o site fica em
+        https://SEU-USUARIO.github.io/loja
+
+  C) Cloudflare Pages / Vercel - tambem gratis, funcionam parecido.
+
+
+===============================================================
+  CAMINHO 2 - SERVIDOR ONLINE (mantem o login e o cadastro central)
+===============================================================
+Indicado se voce quer editar os produtos de qualquer lugar e que a
+mudanca apareca para TODOS os clientes na hora, com o login de
+administrador funcionando pela internet (como ja funciona na sua rede).
+
+O server.py ja esta preparado para a nuvem: ele le a porta na variavel
+de ambiente PORT automaticamente. Inclui tambem os arquivos:
+   - Procfile      (comando de inicio:  web: python3 server.py)
+   - runtime.txt   (versao do Python)
+
+Plataformas gratuitas para servidor Python (escolha uma):
+
+  A) Render  (https://render.com)  - "New +" > "Web Service"
+       Start command:  python3 server.py
+       Ambiente: Python 3
+  B) Railway (https://railway.app) - cria projeto a partir do codigo
+  C) PythonAnywhere (https://www.pythonanywhere.com) - foco em Python
+  D) Fly.io  (https://fly.io)      - roda em contêiner
+
+ATENCAO - o "pega" das opcoes gratuitas de servidor:
+  1. HIBERNACAO: no plano gratis o servico costuma "dormir" apos um
+     tempo sem acesso. O primeiro cliente que abrir pode esperar uns
+     segundos ate acordar. Depois fica normal.
+  2. DADOS QUE SOMEM (o mais importante): em muitos planos gratis o
+     disco e TEMPORARIO. Isso significa que o arquivo "loja.db" pode
+     ser apagado a cada reinicio/atualizacao, e voce perderia os
+     produtos cadastrados online.
+     - Para o cadastro ficar guardado de verdade, e preciso ativar um
+       "disco persistente" ou um banco de dados da plataforma - isso
+       as vezes ja e pago ou tem limite.
+
+Por isso, se o seu objetivo e so um site bonito e barato para vender,
+o CAMINHO 1 costuma ser o melhor. Se voce quer mesmo o painel central
+online, o CAMINHO 2 funciona, mas vale um plano com disco persistente.
+
+
+===============================================================
+  QUAL EU RECOMENDO?
+===============================================================
+- So quero o site no ar, gratis e sem dor de cabeca, para mostrar os
+  bolos e receber pedidos no WhatsApp:
+        --> CAMINHO 1 (Netlify Drop). Me peca a "versao para publicar"
+            que eu deixo os produtos ja embutidos no arquivo.
+
+- Quero editar de qualquer lugar com login e que apareca para todos:
+        --> CAMINHO 2 (Render/Railway), lembrando de ativar um disco
+            persistente para nao perder o "loja.db".
+
+Me diga qual caminho voce prefere que eu preparo os arquivos certinhos
+e te passo o passo a passo especifico da plataforma escolhida.
